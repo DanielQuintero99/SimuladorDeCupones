@@ -53,7 +53,7 @@ class productos {
     }
 }
 let productosTotales = [cargador = new productos("cargador", 20000, 10), protector = new productos("protector", 15000, 6), funda = new productos("funda", 10000, 15), auriculares = new productos("auriculares", 150000, 5)];
-alert("lista de cupones: \n cupon20 ->20% descuento\n cupon10 ->10% descuento\n cupon5 ->5% descuento ")
+alert("lista de cupones: \n cupon20 --->20% descuento\n cupon10 --->10% descuento\n cupon5 --->5% descuento ")
 
 repetir = true
 while (repetir == true) {
