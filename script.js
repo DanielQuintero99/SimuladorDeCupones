@@ -48,6 +48,7 @@ class productos {
             alert("no ingresaste cupon");
         }
     }
+
     disminuirStock() {
         return this.stock -= 1;
     }
@@ -87,4 +88,3 @@ while (repetir == true) {
 }
 
 
-console.table(productosTotales);
