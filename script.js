@@ -17,74 +17,114 @@ le pide al usuario que ingrese un cupon de descuento(dado al inicio para
      3.3 si el usuario digita el cupon mostrar el precio original y el precio con el descuento.
      3.4 si el usuario no tiene cupon de descuento el programa mostrara los precios sin descuento
 
-
 */
 
+const opciones=["1-Cargador 20.000\n","2-protector de pantalla 15.000\n","3-funda.10.000\n","4-Auriculares 150.000\n","5-Salir.\n"];
 
-const cupones = ["cupon20", "cupon10", "cupon5"];
-
-class productos {
-    constructor(nombre, precio, stock) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.stock = stock;
+class cupones{
+    constructor(nombre,descuento,porcentaje){
+        this.nombre=nombre;
+        this.descuento=descuento;
+        this.porcentaje=porcentaje;
     }
-    descuento() {
-        let cupon = prompt("si tienes un cupon. ingresalo aqui, de lo contrario pulsa enter.")
-        if (cupon === cupones[0]) {
-            let descuento20p = 0.20;
-            let descuentoAplicado = this.precio * descuento20p;
-            return this.precio -= descuentoAplicado;
-
-        } else if (cupon === cupones[1]) {
-            let descuento10p = 0.10;
-            let descuentoAplicado = this.precio * descuento10p;
-            return this.precio -= descuentoAplicado;
-        } else if (cupon === cupones[2]) {
-            let descuento5p = 0.05;
-            let descuentoAplicado = this.precio * descuento5p;
-            return this.precio -= descuentoAplicado;
-        } else {
-            alert("no ingresaste cupon");
-        }
-    }
-
-    disminuirStock() {
-        return this.stock -= 1;
-    }
-}
-let productosTotales = [cargador = new productos("cargador", 20000, 10), protector = new productos("protector", 15000, 6), funda = new productos("funda", 10000, 15), auriculares = new productos("auriculares", 150000, 5)];
-alert("lista de cupones: \n cupon20 --->20% descuento\n cupon10 --->10% descuento\n cupon5 --->5% descuento ")
-
-repetir = true
-while (repetir == true) {
     
-    let compra = parseInt(prompt("elige un producto, digita el numero correspondite:\n 1-Cargador 20.000\n 2-protector de pantalla 15.000\n 3-funda.10.000\n 4-Auriculares 150.000\n 5-Salir."));
+}
+let descuentos=[cupon20=new cupones("cupon20",0.20,": 20% de descuento\n"),cupon10=new cupones("cupon10",0.10,": 10% de descuento\n"),cupon5=new cupones("cupon5",0.05,": 5% de descuento\n")]
 
-    if (compra >= 1 && compra <= 4) {
-        if (compra === 1) {
+class productos{
+    constructor(nombre, precio) {
+        this.nombre = nombre;
+        this.precio = precio; 
+        
+    }
+ 
+    descuento(){
+        let palabra= prompt("si tienes un cupon, ingresalo aqui, de lo contrario pulsa enter.");
+        let cupon=palabra.toLowerCase();
+            if (cupon===cupon20.nombre) {    
+                this.precioDescuento=1;
+                return this.precioDescuento=this.precio-(this.precio*cupon20.descuento);     
+            }else if (cupon===cupon10.nombre) {
+                this.precioDescuento=1;
+                return this.precioDescuento=this.precio-(this.precio*cupon10.descuento); 
+            }else if (cupon===cupon5.nombre) {
+                this.precioDescuento=1;
+                return this.precioDescuento=this.precio-(this.precio*cupon5.descuento); 
+            }
+            else{
+                verificar=false;
+                alert("no ingresaste cupon");
+                
+            }
+    }
+
+}
+
+
+let productosTotales = [cargador = new productos("cargador", 20000), protector = new productos("protector", 15000), funda = new productos("funda", 10000), auriculares = new productos("auriculares", 150000)];
+ let verificar=true;
+ let repetir=0;
+ let listado="";
+ let misCupones="";
+function listarProductos(){
+opciones.forEach((opcion)=>
+    listado+=opcion);
+}
+function mostrarCupones(){
+    descuentos.forEach((descontar)=>    
+           misCupones+=descontar.nombre + " " + descontar.porcentaje
+                   
+   );
+}
+mostrarCupones();
+alert(misCupones)
+listarProductos();
+while (repetir!==5) {
+    
+    repetir=parseInt(prompt(`Seleccione una opcion, digita el numero correspondiete: \n${listado}`));
+    if (repetir >= 1 && repetir <= 4) {
+        if (repetir === 1) {
             cargador.descuento();
-            alert(`Tu producto es ${productosTotales[0].nombre}, tu producto cuesta ${cargador.precio} `)
-            cargador.disminuirStock();
-        } else if (compra === 2) {
-            protector.descuento();
-            alert(`Tu producto es ${productosTotales[1].nombre}, tu producto cuesta ${protector.precio} `);
-            protector.disminuirStock();
-        } else if (compra === 3) {
-            funda.descuento();
-            alert(`Tu producto es ${productosTotales[2].nombre}, tu producto cuesta ${funda.precio} `);
-            funda.disminuirStock();
-        } else if (compra === 4) {
-            auriculares.descuento();
-            alert(`Tu producto es ${productosTotales[3].nombre}, tu producto cuesta ${auriculares.precio} `);
-            auriculares.disminuirStock;
+            if (verificar===true) {           
+            alert(`Tu producto es ${cargador.nombre}, tu descuento es ${cargador.precio-cargador.precioDescuento} tu producto cuesta ${cargador.precioDescuento} `)
+        }else{
+            alert(`Tu producto es ${cargador.nombre}, tu producto cuesta ${cargador.precio} `)
+            verificar=true
         }
-    } else if (compra === 5) {
+        } else if (repetir === 2) {
+            protector.descuento();
+            if (verificar===true) {           
+                alert(`Tu producto es ${protector.nombre}, tu descuento es ${protector.precio-protector.precioDescuento} tu producto cuesta ${protector.precioDescuento} `)
+            }else{
+                alert(`Tu producto es ${protector.nombre}, tu producto cuesta ${protector.precio} `)
+                verificar=true
+            }
+        } else if (repetir === 3) {
+            funda.descuento();
+            if (verificar===true) {           
+                alert(`Tu producto es ${funda.nombre}, tu descuento es ${funda.precio-funda.precioDescuento} tu producto cuesta ${funda.precioDescuento} `)
+            }else{
+                alert(`Tu producto es ${funda.nombre}, tu producto cuesta ${funda.precio} `)
+                verificar=true
+            }
+
+        } else if (repetir === 4) {
+            auriculares.descuento();
+            if (verificar===true) {           
+                alert(`Tu producto es ${auriculares.nombre}, tu descuento es ${auriculares.precio-auriculares.precioDescuento} tu producto cuesta ${auriculares.precioDescuento} `)
+            }else{
+                alert(`Tu producto es ${auriculares.nombre}, tu producto cuesta ${auriculares.precio} `)
+                verificar=true
+            }
+
+        }
+    } else if(repetir===5){
         alert("Saliste");
-        repetir = false;
-    } else {
-        alert("ingresa un valor valido");
+    }else {
+        alert("Ingresa un valor valido");
     }
 }
+
+
 
 
