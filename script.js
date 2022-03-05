@@ -35,9 +35,7 @@ class productos {
     constructor(nombre, precio) {
         this.nombre = nombre;
         this.precio = precio;
-
     }
-
 }
 
 
@@ -60,11 +58,9 @@ function mostrarCupones() {
 }
 
 function agregarProductos() {
-
     let seleccion = prompt(`Seleccione una opcion, escribe el producto que deseas : \n${listado}`);
     const comprados = productosTotales.filter(x => {
-        return x.nombre === seleccion
-        
+        return x.nombre === seleccion        
     });
     return carrito.push(comprados[0].precio); 
     
@@ -91,30 +87,21 @@ function validarCupones(){
 
     }
 
-
-
-
 mostrarCupones();
 alert(misCupones)
 listarProductos();
 
-
 let bucle = true
-
-
     
 agregarProductos(); 
 let total=0; 
 while (bucle === true) {
-    let agregarMas = parseInt( prompt("Deseas agregar mas productos? \n 1.SI \n 2.NO "));    
-                
-    if (agregarMas === 1) {   
-            
+    let agregarMas = parseInt( prompt("Deseas agregar mas productos? \n 1.SI \n 2.NO "));                    
+    if (agregarMas === 1) {               
         agregarProductos();
            for (let suma of carrito) {  
                total+=suma               
-           }
-           
+           }           
     } else if (agregarMas === 2) {
         alert(`El total a pagar es de ${total}`)
         bucle = false
