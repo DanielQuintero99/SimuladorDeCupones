@@ -38,27 +38,6 @@ class productos {
 
     }
 
-    // descuento() {
-    //     let palabra = prompt("si tienes un cupon, ingresalo aqui, de lo contrario pulsa enter.");
-    //     let cupon = palabra.toLowerCase();
-
-    //     if (cupon === cupon20.nombre) {
-    //         this.precioDescuento = 1;
-    //         return this.precioDescuento = this.precio - (this.precio * cupon20.descuento);
-    //     } else if (cupon === cupon10.nombre) {
-    //         this.precioDescuento = 1;
-    //         return this.precioDescuento = this.precio - (this.precio * cupon10.descuento);
-    //     } else if (cupon === cupon5.nombre) {
-    //         this.precioDescuento = 1;
-    //         return this.precioDescuento = this.precio - (this.precio * cupon5.descuento);
-    //     } else {
-    //         verificar = false;
-    //         alert("no ingresaste cupon");
-
-    //     }
-
-    // }
-
 }
 
 
@@ -145,48 +124,3 @@ while (bucle === true) {
 }
 validarCupones();
 
-// while (repetir !== 5) {
-
-//     repetir = parseInt(prompt(`Seleccione una opcion, escribe el priducto que deseas : \n${listado} O escribe "salir" para terminar `));
-//     if (repetir >= 1 && repetir <= 4) {
-//         if (repetir === 1) {
-//             cargador.descuento();
-//             if (verificar === true) {
-//                 alert(`Tu producto es ${cargador.nombre}, tu descuento es ${cargador.precio-cargador.precioDescuento} tu producto cuesta ${cargador.precioDescuento} `)
-//             } else {
-//                 alert(`Tu producto es ${cargador.nombre}, tu producto cuesta ${cargador.precio} `)
-//                 verificar = true
-//             }
-//         } else if (repetir === 2) {
-//             protector.descuento();
-//             if (verificar === true) {
-//                 alert(`Tu producto es ${protector.nombre}, tu descuento es ${protector.precio-protector.precioDescuento} tu producto cuesta ${protector.precioDescuento} `)
-//             } else {
-//                 alert(`Tu producto es ${protector.nombre}, tu producto cuesta ${protector.precio} `)
-//                 verificar = true
-//             }
-//         } else if (repetir === 3) {
-//             funda.descuento();
-//             if (verificar === true) {
-//                 alert(`Tu producto es ${funda.nombre}, tu descuento es ${funda.precio-funda.precioDescuento} tu producto cuesta ${funda.precioDescuento} `)
-//             } else {
-//                 alert(`Tu producto es ${funda.nombre}, tu producto cuesta ${funda.precio} `)
-//                 verificar = true
-//             }
-
-//         } else if (repetir === 4) {
-//             auriculares.descuento();
-//             if (verificar === true) {
-//                 alert(`Tu producto es ${auriculares.nombre}, tu descuento es ${auriculares.precio-auriculares.precioDescuento} tu producto cuesta ${auriculares.precioDescuento} `)
-//             } else {
-//                 alert(`Tu producto es ${auriculares.nombre}, tu producto cuesta ${auriculares.precio} `)
-//                 verificar = true
-//             }
-
-//         }
-//     } else if (repetir === 5) {
-//         alert("Saliste");
-//     } else {
-//         alert("Ingresa un valor valido");
-//     }
-// }
