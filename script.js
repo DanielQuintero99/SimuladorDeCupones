@@ -1,25 +1,3 @@
-/*
-Este programa es un simulador de cupones de descuento,
-le pide al usuario que ingrese un cupon de descuento(dado al inicio para
-    efectos del programa)una vez entregado el cupon el usuario se desplegara una lista de 4 prodcutos
-    el usuario optara o no por ingresar el cupon, si acepta ingreesarlo se ejecuta un espacio
-    para que lo escriba, si lo escribe mal se mostrara el precio del prodcuto sin descuento, si lo ingresa bien, 
-    se mostrara el producto que eligio y el precio con y sin descuento, si opta por no poner el cupon, se mostrara el 
-    item que selecciono con su precio sin descuento.
-
-    ALGORITMO:
-    1.Dar el cupon al usuario
-    2.mostrar la lista de productos al usuario
-     2.1 Validar si lo que ingreso el usuario es correcto
-    3.iniciar una condicional definiendo si el usuario tiene descuento o no.
-     3.1 si tiene descuento mostrar el precio del producto con el descuento, si no lo tiene mostrar el precio sin descuento
-     3.2 si no lo digita el bucle se repetira
-     3.3 si el usuario digita el cupon mostrar el precio original y el precio con el descuento.
-     3.4 si el usuario no tiene cupon de descuento el programa mostrara los precios sin descuento
-
-*/
-
-
 
 class cupones {
     constructor(nombre, descuento, porcentaje) {
@@ -39,7 +17,13 @@ class productos {
 }
 
 
-let productosTotales = [cargador = new productos("cargador", 20000), protector = new productos("protector", 15000), funda = new productos("funda", 10000), auriculares = new productos("auriculares", 150000)];
+let productosTotales = [
+cargador = new productos("cargador", 20000), 
+protector = new productos("protector", 15000), 
+funda = new productos("funda", 10000), 
+auriculares = new productos("auriculares", 150000)
+];
+
 let verificar = true;
 let listado = [];
 let misCupones = "";
@@ -87,13 +71,13 @@ function validarCupones(){
 
     }
 
-mostrarCupones();
-alert(misCupones)
-listarProductos();
+// mostrarCupones();
+// alert(misCupones)
+// listarProductos();
 
-let bucle = true
+// let bucle = true
     
-agregarProductos(); 
+// agregarProductos(); 
 let total=0; 
 while (bucle === true) {
     let agregarMas = parseInt( prompt("Deseas agregar mas productos? \n 1.SI \n 2.NO "));                    
