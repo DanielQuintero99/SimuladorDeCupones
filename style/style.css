@@ -3,6 +3,17 @@
     padding: 0;
 }
 .botonCupones{
-    height: 200px;
-    margin-top: 25%;
+    height: 100px;
+    margin-top: 5%;
+    font-size: 25px;
+}
+#gridProductos{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: 100vh;
+}
+.btnContainerCup{
+    grid-column: 1/3;
+    grid-row:3/4;
 }
