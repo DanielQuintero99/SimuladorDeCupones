@@ -14,10 +14,11 @@ let descuentos = [
     ]
 
 class productos {
-    constructor(id,nombre, precio) {
+    constructor(id,nombre, precio,img) {
         this.id=id;
         this.nombre = nombre;
         this.precio = precio;
+        this.img=img;
              
     }
 }
@@ -29,6 +30,3 @@ protector = new productos("2","protector", 15000),
 funda = new productos("3","funda", 10000), 
 auriculares = new productos("4","auriculares", 150000)
 ];
-
-const imagenCargador=document.createElement("img");
-imagenCargador.src="../images/cargador.jpg"
