@@ -14,12 +14,11 @@ let descuentos = [
     ]
 
 class productos {
-    constructor(id,nombre, precio,img) {
+    constructor(id,nombre, precio) {
         this.id=id;
         this.nombre = nombre;
         this.precio = precio;
-        this.img=img;
-             
+                
     }
 }
 
