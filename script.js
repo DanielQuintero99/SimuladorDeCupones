@@ -1,24 +1,36 @@
-
 mostrarProductos();
+generarCupones();
 
-function mostrarProductos(){
-   const nodoProductos=document.getElementById("gridProductos");
-
-    productosTotales.forEach((opcion)=>{
-        const card =document.createElement("div")
-        card.setAttribute("class","card");
-        card.innerHTML=`<div class="d-flex flex-column align-items-center justify-content-center">
+function mostrarProductos() {
+    const nodoProductos = document.getElementById("gridProductos");
+    productosTotales.forEach((opcion) => {
+        const card = document.createElement("div")
+        card.setAttribute("class", "card");
+        card.innerHTML = `<div class="d-flex flex-column align-items-center justify-content-center">
             <h2 class="card-title">${opcion.nombre}</h2>
             <div class="ContenedorImagen"><img class="img-fluid" style="height: 250px; width: 250px;" src="${opcion.img}"></div>
             <p class="card-text text-center">${opcion.precio}$</p>
             <a href="#" class="btn btn-success">Añadir</a>
-            </div>`
+            </div>`;
         nodoProductos.appendChild(card);
 
     });
 }
-function agregarProductos(){
-    
+const btnMostrarCupones = document.getElementById("btnCupones");
+
+function generarCupones() {
+    const nodoBody = document.getElementById("main");
+    const divCupones = document.createElement("div");
+    const listaCuponesTotales = document.createElement("ul");
+    nodoBody.appendChild(divCupones);
+    divCupones.appendChild(listaCuponesTotales);
+    divCupones.setAttribute("class", "divCupones");
+
+    descuentos.forEach((listaCupones) => {
+        const nodoLi=document.createElement("li");
+        nodoLi.innerHTML=listaCupones.nombre;
+        listaCuponesTotales.appendChild(nodoLi);
+    })
 }
 
 // let verificar = true;
@@ -34,8 +46,8 @@ function agregarProductos(){
 //         return x.nombre === seleccion        
 //     });
 //     return carrito.push(comprados[0].precio); 
-    
-     
+
+
 // }
 // function validarCupones(){   
 //         let palabra = prompt("si tienes un cupon, ingresalo aqui, de lo contrario pulsa enter.");
@@ -63,7 +75,7 @@ function agregarProductos(){
 // listarProductos();
 
 // let bucle = true
-    
+
 // agregarProductos(); 
 // let total=0; 
 // while (bucle === true) {
@@ -81,4 +93,3 @@ function agregarProductos(){
 //     }
 // }
 // validarCupones();
-
