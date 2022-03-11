@@ -6,37 +6,29 @@ function mostrarProductos(){
 
     productosTotales.forEach((opcion)=>{
         const card =document.createElement("div")
-        card.setAttribute("class","card ");
-        card.innerHTML=`<div class="card-body">
-            <h5 class="card-title">${opcion.nombre}</h5>
-            <p class="card-text">${opcion.precio}$</p>
+        card.setAttribute("class","card");
+        card.innerHTML=`<div class="d-flex flex-column align-items-center justify-content-center">
+            <h2 class="card-title">${opcion.nombre}</h2>
+            <div class="ContenedorImagen"><img class="img-fluid" style="height: 250px; width: 250px;" src="${opcion.img}"></div>
+            <p class="card-text text-center">${opcion.precio}$</p>
             <a href="#" class="btn btn-success">Añadir</a>
             </div>`
         nodoProductos.appendChild(card);
 
-
     });
 }
-
+function agregarProductos(){
+    
+}
 
 // let verificar = true;
 // let listado = [];
 // let misCupones = "";
 // let carrito = [];
 
-// function listarProductos() {
-//     productosTotales.forEach((opcion) =>
-//         listado += opcion.nombre + " " + opcion.precio + "\n");
-// }
 
-// function mostrarCupones() {
-//     descuentos.forEach((descontar) =>
-//         misCupones += descontar.nombre + " " + descontar.porcentaje
 
-//     );
-// }
-
-// function agregarProductos() {
+// function buscarProductos() {
 //     let seleccion = prompt(`Seleccione una opcion, escribe el producto que deseas : \n${listado}`);
 //     const comprados = productosTotales.filter(x => {
 //         return x.nombre === seleccion        

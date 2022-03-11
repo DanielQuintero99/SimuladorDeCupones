@@ -13,19 +13,19 @@ let descuentos = [
      cupon5 = new cupones("cupon5", 0.05, ": 5% de descuento\n")
     ]
 
-class productos {
-    constructor(id,nombre, precio) {
+class producto {
+    constructor(id,nombre, precio,img) {
         this.id=id;
         this.nombre = nombre;
         this.precio = precio;
-                
-    }
+        this.img=img;
+   }
 }
 
 
 let productosTotales = [
-cargador = new productos("1","cargador", 20000), 
-protector = new productos("2","protector", 15000), 
-funda = new productos("3","funda", 10000), 
-auriculares = new productos("4","auriculares", 150000)
+cargador = new producto("1","Cargador", 20000,"/images/cargador.jpg"), 
+protector = new producto("2","Protector", 15000, "/images/protector.jpg"), 
+funda = new producto("3","Funda", 10000,"/images/funda.jpg"), 
+auriculares = new producto("4","Auriculares", 150000,"/images/auriculares.jpg")
 ];
