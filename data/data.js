@@ -24,8 +24,8 @@ class producto {
 
 
 let productosTotales = [
-cargador = new producto("1","Cargador", 20000,"/images/cargador.jpg"), 
-protector = new producto("2","Protector", 15000, "/images/protector.jpg"), 
-funda = new producto("3","Funda", 10000,"/images/funda.jpg"), 
-auriculares = new producto("4","uriculares", 150000,"/images/auriculares.jpg")
+cargador = new producto("1","Cargador", 20000,"images/cargador.jpg"), 
+protector = new producto("2","Protector", 15000, "images/protector.jpg"), 
+funda = new producto("3","Funda", 10000,"images/funda.jpg"), 
+auriculares = new producto("4","uriculares", 150000,"images/auriculares.jpg")
 ];
