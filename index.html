@@ -6,39 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="style/style.css">
-    
+
     <title>Simulador de cupones</title>
 </head>
 
 <body>
-<div id="opacity">
-    <main class="container-flex row" id="main">
-        <div id="gridProductos" class="col-md-8 row">
-                
-            <div class="btnContainerCup d-flex justify-content-center">
-                <button id="btnCupones" class="btn btn-danger row col-12 botonCupones">Consigue cupones</button>
+    <div id="opacity">
+        <main class="container-flex row" id="main">
+            <div id="gridProductos" class="col-md-8 row">
+
+                <div class="btnContainerCup d-flex justify-content-center">
+                    <button id="btnCupones" class="btn btn-danger row col-12 botonCupones">Consigue cupones</button>
                 </div>
-        </div>
-        
-        <aside class="carrito col-md-4 " id="carrito">
+            </div>
+
+            <aside class="carrito col-md-4 " id="carrito">
                 <h2>Carrito</h2>
-                <ul id="carrito" class="itemsCarrito"></ul>
                 <hr>
+                <ul id="carrito" class="list-group"></ul>
                 <p class="text-right">Total: <span id="total"></span>$</p>
                 <div class="mb-3 col-12">
                     <label for="cuponesIngresados" class="form-label ">Si tienes 1 cupon valido, ingresalo aqui</label>
                     <input type="text" class="form-control col-auto" id="ValidarCupon" placeholder="Ingresa un Cupon">
-                    <button id="btnComprar" class="btn btn-dark col-auto mt-1 mb-1">Validar</button>
-                  </div>
+                    <button id="btnValidar" class="btn btn-dark col-auto mt-1 mb-1">Validar</button>
+                </div>
                 <button id="btnComprar" class="btn btn-primary">Comprar</button>
-        </aside>
+            </aside>
         </main>
-</div>
+    </div>
 </body>
 <script src="data/data.js"></script>
 <script src="script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+</script>
 
 </html>

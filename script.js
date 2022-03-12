@@ -1,5 +1,6 @@
 mostrarProductos();
 generarCupones();
+agregarProductos()
 
 
 let misCupones = "";
@@ -15,7 +16,7 @@ function mostrarProductos() {
             <img class="img-fluid" style="height: 250px; width: 250px;" src="${opcion.img}">
             </div>
             <p class="card-text text-center">${opcion.precio}$</p>
-            <a href="#" class="btn btn-success">Añadir</a>
+            <a href="#" class="btn btn-success btnAñadir">Añadir</a>
             </div>`;
         nodoProductos.appendChild(card);
 
@@ -28,7 +29,6 @@ function generarCupones() {
     const divCupones = document.createElement("div");
     const tituloCupones=document.createElement("h3");
     const listaCuponesTotales = document.createElement("ul");
-    const opacity=document.getElementById("opacity");
     listaCuponesTotales.setAttribute("class","list-group list-group-flush")
     const botonSalir=document.createElement("button");
     botonSalir.setAttribute("class","btn btn-info text-white");
@@ -43,7 +43,6 @@ function generarCupones() {
     const btnMostrarCupones = document.getElementById("btnCupones");
     btnMostrarCupones.addEventListener("click",function(){
         divCupones.style.display= "";
-        opacity.style.opacity="1"
     })
     botonSalir.addEventListener("click", function(){
         divCupones.style.display= "none";
@@ -52,26 +51,17 @@ function generarCupones() {
         const nodoLi=document.createElement("li");
         nodoLi.setAttribute("class","list-group-item item-info")
         nodoLi.innerHTML=listaCupones.nombre + listaCupones.porcentaje;
-        listaCuponesTotales.appendChild(nodoLi);
-
-        
+        listaCuponesTotales.appendChild(nodoLi);        
     })
 }
 
+let carrito = [];
 
+function agregarProductos(){
+    const btnAgregar=document.getElementsByClassName("btnAñadir");
+       
 
-// function listarProductos() {
-//     productosTotales.forEach((opcion) =>
-//         listado += opcion.nombre + " " + opcion.precio + "\n");
-// }
-
-
-// let verificar = true;
-// let listado = [];
-
-// let carrito = [];
-
-
+}
 
 
 // function buscarProductos() {
