@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 .botonCupones{
     height: 100px;
@@ -28,4 +29,32 @@
 }
 .card{
     padding: 15px;
+}
+.divCupones{
+    background-color: lightcyan;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 20%;
+    top: 30%;
+    width: 30%;
+    height: 30%;
+    border: 1px solid rgba(28,110,164,0.22);
+    border-radius: 8px;
+    flex-direction: column;
+    box-shadow: 3px 3px 9px -2px #12D5FF;
+    transition: 1s;
+    transform: translateY(0%);
+}
+
+.list-group-item {
+    background-color:lightcyan;
+}
+.opacity{
+    width: 100%;
+  
+    z-index: 10000;
+    background: rgba(0,0,0,0.5)
 }

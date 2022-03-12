@@ -1,6 +1,9 @@
 mostrarProductos();
 generarCupones();
 
+
+let misCupones = "";
+
 function mostrarProductos() {
     const nodoProductos = document.getElementById("gridProductos");
     productosTotales.forEach((opcion) => {
@@ -8,7 +11,9 @@ function mostrarProductos() {
         card.setAttribute("class", "card");
         card.innerHTML = `<div class="d-flex flex-column align-items-center justify-content-center">
             <h2 class="card-title">${opcion.nombre}</h2>
-            <div class="ContenedorImagen"><img class="img-fluid" style="height: 250px; width: 250px;" src="${opcion.img}"></div>
+            <div class="ContenedorImagen">
+            <img class="img-fluid" style="height: 250px; width: 250px;" src="${opcion.img}">
+            </div>
             <p class="card-text text-center">${opcion.precio}$</p>
             <a href="#" class="btn btn-success">Añadir</a>
             </div>`;
@@ -16,27 +21,56 @@ function mostrarProductos() {
 
     });
 }
-const btnMostrarCupones = document.getElementById("btnCupones");
+
 
 function generarCupones() {
     const nodoBody = document.getElementById("main");
     const divCupones = document.createElement("div");
+    const tituloCupones=document.createElement("h3");
     const listaCuponesTotales = document.createElement("ul");
+    const opacity=document.getElementById("opacity");
+    listaCuponesTotales.setAttribute("class","list-group list-group-flush")
+    const botonSalir=document.createElement("button");
+    botonSalir.setAttribute("class","btn btn-info text-white");
+    tituloCupones.innerHTML="Disfruta de estos Cupones";
+    botonSalir.innerHTML="Salir";
     nodoBody.appendChild(divCupones);
+    divCupones.appendChild(tituloCupones)
     divCupones.appendChild(listaCuponesTotales);
+    divCupones.appendChild(botonSalir);
     divCupones.setAttribute("class", "divCupones");
-
+    divCupones.style.display= "none";
+    const btnMostrarCupones = document.getElementById("btnCupones");
+    btnMostrarCupones.addEventListener("click",function(){
+        divCupones.style.display= "";
+        opacity.style.opacity="1"
+    })
+    botonSalir.addEventListener("click", function(){
+        divCupones.style.display= "none";
+    })
     descuentos.forEach((listaCupones) => {
         const nodoLi=document.createElement("li");
-        nodoLi.innerHTML=listaCupones.nombre;
+        nodoLi.setAttribute("class","list-group-item item-info")
+        nodoLi.innerHTML=listaCupones.nombre + listaCupones.porcentaje;
         listaCuponesTotales.appendChild(nodoLi);
+
+        
     })
 }
 
+
+
+// function listarProductos() {
+//     productosTotales.forEach((opcion) =>
+//         listado += opcion.nombre + " " + opcion.precio + "\n");
+// }
+
+
 // let verificar = true;
 // let listado = [];
-// let misCupones = "";
+
 // let carrito = [];
+
 
 
 
