@@ -12,6 +12,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 0.5fr;
+    grid-gap: 1px;
+    margin-top: 2px;
+    margin-left: 2px;
  
 }
 .btnContainerCup{

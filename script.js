@@ -1,11 +1,20 @@
-mostrarProductos();
+mostrarAddProductos();
 generarCupones();
-agregarProductos()
 
 
+let carrito =[];
 let misCupones = "";
 
-function mostrarProductos() {
+function cargarCarrito(){
+ let itemsEnCarrito = JSON.parse(localStorage.getItem("itemsEnCarrito"));
+    if (itemsEnCarrito==null) {
+        return [];
+    }
+    return itemsEnCarrito
+}
+
+
+function mostrarAddProductos() {
     const nodoProductos = document.getElementById("gridProductos");
     productosTotales.forEach((opcion) => {
         const card = document.createElement("div")
@@ -16,11 +25,34 @@ function mostrarProductos() {
             <img class="img-fluid" style="height: 250px; width: 250px;" src="${opcion.img}">
             </div>
             <p class="card-text text-center">${opcion.precio}$</p>
-            <a href="#" class="btn btn-success btnAñadir">Añadir</a>
+            <a href="#" id="añadir${opcion.id}" class="btn btn-success btnAñadir">Añadir</a>
             </div>`;
         nodoProductos.appendChild(card);
+        const btnAdd=document.getElementById(`añadir${opcion.id}`);
+        btnAdd.addEventListener("click",()=>agregarAlCarrito(opcion.id))
 
-    });
+     });
+}
+
+function agregarAlCarrito(idProducto){
+   let itemCarrito=carrito.find((elemento)=>{
+       if (elemento.id==idProducto) {
+           return true
+       }
+   });
+   if (itemCarrito) {
+       let index= carrito.findIndex((elemento)=>{
+           if(elemento.id===itemCarrito.id){
+               return true
+           }
+       });
+       carrito[index].add();
+       carrito[index].precioTotal();
+       
+   }else{
+       carrito.push(new Producto (productosTotales[idProducto],1))
+   }
+   console.log(carrito);
 }
 
 
@@ -55,21 +87,15 @@ function generarCupones() {
     })
 }
 
-let carrito = [];
+// let carrito = cargarCarrito();
+localStorage.setItem("itemsEnCarrito",JSON.stringify(carrito));
 
-function agregarProductos(){
-    const btnAgregar=document.getElementsByClassName("btnAñadir");
-       
-
-}
+cargarCarrito();
 
 
-// function buscarProductos() {
-//     let seleccion = prompt(`Seleccione una opcion, escribe el producto que deseas : \n${listado}`);
-//     const comprados = productosTotales.filter(x => {
-//         return x.nombre === seleccion        
-//     });
-//     return carrito.push(comprados[0].precio); 
+
+
+
 
 
 // }

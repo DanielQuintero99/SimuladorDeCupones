@@ -13,19 +13,52 @@ let descuentos = [
     cupon5 = new cupon("cupon5", 0.05, ": 5% de descuento")
     ]
 
-class producto {
-    constructor(id,nombre, precio,img) {
-        this.id=id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.img=img;
+class Producto {
+    constructor(producto,cantidad) {
+        this.id=producto.id;
+        this.nombre =producto.nombre;
+        this.precioTotal =producto.precio;
+        this.img=producto.img;
+        this.cantidad=cantidad;
+        
    }
+   add(){
+       this.cantidad++
+   }
+   decrease(){
+       this.cantidad--
+   }
+   precioTotal(){
+       this.precioTotal=this.precio*this.cantidad
+   }
+
 }
 
+let productosTotales=[
+    {
+        id:0,
+        nombre:"Cargador",
+        precio:20000,
+        img:"images/cargador.jpg"
+    },
+    {
+        id:1,
+        nombre:"Protector",
+        precio:15000,
+        img:"images/protector.jpg"
+    },
+    {
+        id:2,
+        nombre:"Funda",
+        precio:10000,
+        img:"images/funda.jpg"
+    },
+    {
+        id:3,
+        nombre:"Auriculares",
+        precio:150000,
+        img:"images/auriculares.jpg"
+    }
+]
 
-let productosTotales = [
-cargador = new producto("1","Cargador", 20000,"images/cargador.jpg"), 
-protector = new producto("2","Protector", 15000, "images/protector.jpg"), 
-funda = new producto("3","Funda", 10000,"images/funda.jpg"), 
-auriculares = new producto("4","uriculares", 150000,"images/auriculares.jpg")
-];
+
