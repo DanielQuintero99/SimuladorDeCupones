@@ -1,17 +1,29 @@
 mostrarAddProductos();
 generarCupones();
-
-
-let carrito =[];
+cargarCarrito();
+let carrito = cargarCarrito();
 let misCupones = "";
 
-function cargarCarrito(){
- let itemsEnCarrito = JSON.parse(localStorage.getItem("itemsEnCarrito"));
-    if (itemsEnCarrito==null) {
-        return [];
+function cargarCarrito() {
+  let contenidoEnStorage = JSON.parse(localStorage.getItem("carritoEnStorage"));
+   if (contenidoEnStorage) {
+    let array = [];
+    for (let i = 0; i < contenidoEnStorage.length; i++) {
+      let producto = new Producto(
+        contenidoEnStorage[i],
+        contenidoEnStorage[i].cantidad
+      );
+      producto.ActualizarPrecioTotal();
+      array.push(producto);
+         
     }
-    return itemsEnCarrito
+
+    return array;
+  }
+  
+  return [];
 }
+
 
 
 function mostrarAddProductos() {
@@ -29,32 +41,69 @@ function mostrarAddProductos() {
             </div>`;
         nodoProductos.appendChild(card);
         const btnAdd=document.getElementById(`añadir${opcion.id}`);
-        btnAdd.addEventListener("click",()=>agregarAlCarrito(opcion.id))
-
+        btnAdd.addEventListener("click",()=>agregarAlCarrito(opcion.id));
+       
      });
 }
 
 function agregarAlCarrito(idProducto){
-   let itemCarrito=carrito.find((elemento)=>{
-       if (elemento.id==idProducto) {
-           return true
-       }
-   });
+
+   let itemCarrito=carrito.find((elemento)=>elemento.id==idProducto);
+ 
    if (itemCarrito) {
-       let index= carrito.findIndex((elemento)=>{
-           if(elemento.id===itemCarrito.id){
-               return true
-           }
-       });
+       let index= carrito.findIndex((elemento)=>elemento.id===itemCarrito.id);
        carrito[index].add();
-       carrito[index].precioTotal();
+       carrito[index].ActualizarPrecioTotal();
        
    }else{
-       carrito.push(new Producto (productosTotales[idProducto],1))
+       carrito.push(new Producto (productosTotales[idProducto],1));
+      
    }
-   console.log(carrito);
+ 
+   localStorage.setItem("carritoEnStorage",JSON.stringify(carrito));
+   mostrarCarrito(carrito)
 }
 
+function mostrarCarrito(lista){
+    let divCarrito=document.getElementById("carrito");
+    divCarrito.innerHTML="";
+    let precioTotal=obtenerPrecioTotal(lista);
+    let table= document.createElement("div");
+    let total=document.getElementById("total");
+    total.innerHTML=`${precioTotal}`
+    table.innerHTML=`
+    <table id="bodyTabla" class="table">
+  <thead>
+    <tr>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Producto</th>
+      <th scope="col">Precio Parcial</th>
+    </tr>
+  </thead>  
+</table>
+`;
+
+divCarrito.appendChild(table);
+
+let bodyTabla=document.getElementById("bodyTabla");
+    lista.forEach((deseos) => {
+        let datos=document.createElement("tbody");
+        datos.innerHTML=`
+        
+    <tr>
+      <th scope="row">${deseos.cantidad}</th>
+      <td>${deseos.nombre}</td>
+      <td>$${deseos.precioTotal}</td>
+      <td><button id="eliminar${deseos.id}" type="button" class=" botonQuitar btn-dark" >-</button></td>
+    </tr>          
+     `;
+     bodyTabla.appendChild(datos);
+    })
+}
+
+function obtenerPrecioTotal(){
+    return carrito.reduce((total,elemento)=>total+elemento.precioTotal,0);    
+}
 
 function generarCupones() {
     const nodoBody = document.getElementById("main");
@@ -86,13 +135,6 @@ function generarCupones() {
         listaCuponesTotales.appendChild(nodoLi);        
     })
 }
-
-// let carrito = cargarCarrito();
-localStorage.setItem("itemsEnCarrito",JSON.stringify(carrito));
-
-cargarCarrito();
-
-
 
 
 
