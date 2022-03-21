@@ -17,7 +17,6 @@ function cargarCarrito() {
       array.push(producto);
          
     }
-
     return array;
   }
   
@@ -84,7 +83,8 @@ function mostrarCarrito(lista){
 `;
 
 divCarrito.appendChild(table);
-
+let btnEliminar=document.getElementById("btnEliminar");
+    btnEliminar.addEventListener("click",borrarCarrito)
 let bodyTabla=document.getElementById("bodyTabla");
     lista.forEach((deseos) => {
         let datos=document.createElement("tbody");
@@ -98,11 +98,39 @@ let bodyTabla=document.getElementById("bodyTabla");
     </tr>          
      `;
      bodyTabla.appendChild(datos);
+     let eliminarUnidad=document.getElementById(`eliminar${deseos.id}`);
+     eliminarUnidad.addEventListener("click",()=>{
+       eliminarUnItem(deseos.id);
+     })     
     })
+    
 }
 
 function obtenerPrecioTotal(){
     return carrito.reduce((total,elemento)=>total+elemento.precioTotal,0);    
+}
+
+function eliminarUnItem(id){
+    let producto=carrito.find((producto)=>producto.id==id);
+    let index=carrito.findIndex((elemento)=>{
+      if(elemento.id===producto.id){
+        return true
+      }
+    });
+    if(producto.cantidad>1){
+      carrito[index].decrease();
+      carrito[index].ActualizarPrecioTotal();
+    }else{
+      carrito.splice(index,1);
+    }
+    localStorage.setItem("carritoEnStorage",JSON.stringify(carrito));
+    mostrarCarrito(carrito)
+}
+
+function borrarCarrito(){
+  carrito = [];
+  mostrarCarrito(carrito);
+
 }
 
 function generarCupones() {

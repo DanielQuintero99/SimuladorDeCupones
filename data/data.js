@@ -17,6 +17,7 @@ class Producto {
     constructor(producto,cantidad) {
         this.id=producto.id;
         this.nombre =producto.nombre;
+        this.precio=producto.precio;
         this.precioTotal = producto.precio;
         this.img=producto.img;
         this.cantidad=cantidad;
