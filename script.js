@@ -14,7 +14,8 @@ function cargarCarrito() {
         contenidoEnStorage[i].cantidad
       );
       producto.ActualizarPrecioTotal();
-      array.push(producto);
+      let array= [...array,producto];
+      console.log(array)
          
     }
     return array;
