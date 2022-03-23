@@ -14,9 +14,7 @@ function cargarCarrito() {
         contenidoEnStorage[i].cantidad
       );
       producto.ActualizarPrecioTotal();
-      let array = [...array, producto];
-      console.log(array)
-
+      array = [...array, producto];
     }
     return array;
   }
@@ -166,11 +164,12 @@ function borrarCarrito() {
 // }
 
 function  generarCupones(){
- return descuentos.forEach((element)=> element.nombre)
+ return descuentos.forEach((element)=> element.nombre);
 }
 
 function cuponesSweetAlert() {
   let cuponesMostrados=generarCupones(); 
+  console.log(cuponesMostrados);
   let nodo = document.getElementById("btnCupones");
   nodo.addEventListener("click", () => {
     Swal.fire({
