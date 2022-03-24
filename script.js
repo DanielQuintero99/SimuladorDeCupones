@@ -187,45 +187,14 @@ function borrarCarrito() {
 
 }
 
-// function generarCupones() {
-//     const nodoBody = document.getElementById("main");
-//     const divCupones = document.createElement("div");
-//     const tituloCupones=document.createElement("h3");
-//     const listaCuponesTotales = document.createElement("ul");
-//     listaCuponesTotales.setAttribute("class","list-group list-group-flush")
-//     const botonSalir=document.createElement("button");
-//     botonSalir.setAttribute("class","btn btn-info text-white");
-//     tituloCupones.innerHTML="Disfruta de estos Cupones";
-//     botonSalir.innerHTML="Salir";
-//     nodoBody.appendChild(divCupones);
-//     divCupones.appendChild(tituloCupones)
-//     divCupones.appendChild(listaCuponesTotales);
-//     divCupones.appendChild(botonSalir);
-//     divCupones.setAttribute("class", "divCupones");
-//     divCupones.style.display= "none";
-//     const btnMostrarCupones = document.getElementById("btnCupones");
-//     btnMostrarCupones.addEventListener("click",function(){
-//         divCupones.style.display= "";
-//     })
-//     botonSalir.addEventListener("click", function(){
-//         divCupones.style.display= "none";
-//     })
-//     descuentos.forEach((listaCupones) => {
-//         const nodoLi=document.createElement("li");
-//         nodoLi.setAttribute("class","list-group-item item-info")
-//         nodoLi.innerHTML=listaCupones.nombre + listaCupones.porcentaje;
-//         listaCuponesTotales.appendChild(nodoLi);        
-//     })
-// }
-
-
 function  generarCupones(){
- return descuentos.forEach((element)=> element.nombre);
+  let cup=[];
+ descuentos.forEach((element)=>cup=[...cup,element.nombre + element.porcentaje]);
+ return cup;
 }
 
 function cuponesSweetAlert() {
-  let cuponesMostrados=generarCupones(); 
-  console.log(cuponesMostrados);
+  let cuponesMostrados=generarCupones();
   let nodo = document.getElementById("btnCupones");
   nodo.addEventListener("click", () => {
     Swal.fire({
