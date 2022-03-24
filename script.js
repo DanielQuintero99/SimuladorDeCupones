@@ -1,8 +1,10 @@
 mostrarAddProductos();
 cuponesSweetAlert();
 cargarCarrito();
+validarCupones();
 let carrito = cargarCarrito();
 let misCupones = "";
+
 
 function cargarCarrito() {
   let contenidoEnStorage = JSON.parse(localStorage.getItem("carritoEnStorage"));
@@ -76,7 +78,7 @@ function mostrarCarrito(lista) {
   let precioTotal = obtenerPrecioTotal(lista);
   let table = document.createElement("div");
   let total = document.getElementById("total");
-  total.innerHTML = `${precioTotal}`
+  total.innerHTML = `${precioTotal} $`
   table.innerHTML = `
     <table id="bodyTabla" class="table">
   <thead>
@@ -115,6 +117,51 @@ function mostrarCarrito(lista) {
 
 function obtenerPrecioTotal() {
   return carrito.reduce((total, elemento) => total + elemento.precioTotal, 0);
+  
+}
+
+function validarCupones(){
+  let btnValidar=document.getElementById("btnValidar").onclick=function(){
+    let cuponIngresado=document.getElementById("validarCupon").value;
+    let validacion = descuentos.find((element)=>cuponIngresado==element.nombre);
+    let precioTotal=obtenerPrecioTotal()
+    if (validacion) {
+    let descuentoAplicado= validacion.descuento*precioTotal; 
+    let descuentoEnpantalla=document.createElement("div");
+    let totalPagar=document.createElement("div");
+    totalPagar.innerHTML=`<b>Total a pagar ${precioTotal-descuentoAplicado}$ <b>`
+    descuentoEnpantalla.innerHTML=`Descuento por cupon: ${descuentoAplicado} $`
+    descuentoEnpantalla.setAttribute("class","descuentoEnPantalla");
+    let divTotal=document.getElementById("total");
+    divTotal.appendChild(descuentoEnpantalla); 
+    divTotal.appendChild(totalPagar);
+    Toastify({
+      text: `Tu cupon es valido tienes un  ${validacion.descuento*100}% de descuento, difrutalo`,
+      duration: 5000,
+      className: "info",
+      style: {
+        background: "linear-gradient(to up, black,blue )",
+      }
+    }).showToast();
+    }else{
+      Swal.fire({
+          icon: 'error',
+          title: 'El cupon que ingresaste no es valido',
+          text: 'Intentalo Nuevamente',
+          width: 600,
+          padding: '3em',
+          color: 'black',
+          background: '#fff',
+          backdrop: `
+        rgba(0,0,0,0.7)
+        url("https://thumbs.gfycat.com/FreePiercingHamster.webp")
+        right top
+        no-repeat
+      `
+        })
+  }
+    
+  } 
 }
 
 function eliminarUnItem(id) {
@@ -171,6 +218,7 @@ function borrarCarrito() {
 //     })
 // }
 
+
 function  generarCupones(){
  return descuentos.forEach((element)=> element.nombre);
 }
@@ -182,7 +230,7 @@ function cuponesSweetAlert() {
   nodo.addEventListener("click", () => {
     Swal.fire({
       title: 'Difruta de estos cupones',
-      text: cuponesMostrados,
+      text: `${cuponesMostrados}`,
       width: 600,
       padding: '3em',
       color: 'black',
@@ -200,48 +248,3 @@ function cuponesSweetAlert() {
 
 
 
-// }
-// function validarCupones(){   
-//         let palabra = prompt("si tienes un cupon, ingresalo aqui, de lo contrario pulsa enter.");
-//         let cupon = palabra.toLowerCase();
-
-//         if (cupon === cupon20.nombre) {
-//             totalDescuento=total*cupon20.descuento;
-//             alert(`tu descuento es de ${totalDescuento} el valor a pagar es de ${total-totalDescuento}`)
-//         } else if (cupon === cupon10.nombre) {
-//             totalDescuento=total*cupon10.descuento;
-//             alert(`tu descuento es de ${totalDescuento} el valor a pagar es de ${total-totalDescuento}`)
-//         } else if (cupon === cupon5.nombre) {
-//             totalDescuento=total*cupon5.descuento;
-//             alert(`tu descuento es de ${totalDescuento} el valor a pagar es de ${total-totalDescuento}`)
-//         } else {
-//             verificar = false;
-//             alert("no ingresaste cupon");
-
-//         }
-
-//     }
-
-// mostrarCupones();
-// alert(misCupones)
-// listarProductos();
-
-// let bucle = true
-
-// agregarProductos(); 
-// let total=0; 
-// while (bucle === true) {
-//     let agregarMas = parseInt( prompt("Deseas agregar mas productos? \n 1.SI \n 2.NO "));                    
-//     if (agregarMas === 1) {               
-//         agregarProductos();
-//            for (let suma of carrito) {  
-//                total+=suma               
-//            }           
-//     } else if (agregarMas === 2) {
-//         alert(`El total a pagar es de ${total}`)
-//         bucle = false
-//     }else{
-//         alert("Ingresa un valor valido")
-//     }
-// }
-// validarCupones();

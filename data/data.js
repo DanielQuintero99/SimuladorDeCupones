@@ -5,7 +5,6 @@ class cupon {
         this.descuento = descuento;
         this.porcentaje = porcentaje;
     }
-
 }
 let descuentos = [
     cupon20 = new cupon("cupon20", 0.20, ": 20% de descuento"),
