@@ -15,9 +15,9 @@ let descuentos = [
 class Producto {
     constructor(producto,cantidad) {
         this.id=producto.id;
-        this.nombre =producto.nombre;
-        this.precio=producto.precio;
-        this.precioTotal = producto.precio;
+        this.nombre =producto.title;
+        this.precio=producto.price;
+        this.precioTotal = producto.price;
         this.img=producto.img;
         this.cantidad=cantidad;
         

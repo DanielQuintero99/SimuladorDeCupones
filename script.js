@@ -1,4 +1,4 @@
-mostrarAddProductos();
+
 cuponesSweetAlert();
 cargarCarrito();
 validarCupones();
@@ -6,6 +6,11 @@ let carrito = cargarCarrito();
 let misCupones = "";
 
 
+const url='https://fakestoreapi.com/products'
+fetch(url)
+            .then(res=>res.json())
+            .then(json=>mostrarAddProductos(json));
+            
 function cargarCarrito() {
   let contenidoEnStorage = JSON.parse(localStorage.getItem("carritoEnStorage"));
   if (contenidoEnStorage) {
@@ -24,29 +29,28 @@ function cargarCarrito() {
   return [];
 }
 
-
-
-function mostrarAddProductos() {
+function mostrarAddProductos(data) {
   const nodoProductos = document.getElementById("gridProductos");
-  productosTotales.forEach((opcion) => {
+  data.forEach((opcion) => {
     const card = document.createElement("div")
     card.setAttribute("class", "card");
     card.innerHTML = `<div class="d-flex flex-column align-items-center justify-content-center">
-            <h2 class="card-title">${opcion.nombre}</h2>
+            <h2 class="card-title ">${opcion.title}</h2>
             <div class="ContenedorImagen">
-            <img class="img-fluid" style="height: 250px; width: 250px;" src="${opcion.img}">
+            <img class="img-fluid" style="height: 250px; width: 250px;" src="${opcion.image}">
             </div>
-            <p class="card-text text-center">${opcion.precio}$</p>
-            <a href="#" id="añadir${opcion.id}" class="btn btn-success btnAñadir">Añadir</a>
+            <p class="card-text text-justify">${opcion.description}</p>
+            <p class="card-text text-center">${opcion.price}$</p>
+            <a id="añadir${opcion.id}" class="btn btn-success btnAñadir">Añadir</a>
             </div>`;
     nodoProductos.appendChild(card);
     const btnAdd = document.getElementById(`añadir${opcion.id}`);
-    btnAdd.addEventListener("click", () => agregarAlCarrito(opcion.id));
-    btnAdd.addEventListener("click", () => mostrarToast(opcion.nombre) );
+    btnAdd.addEventListener("click", () => agregarAlCarrito(opcion.id,data));
+    btnAdd.addEventListener("click", () => mostrarToast(opcion.title) );
   });
 }
 
-function agregarAlCarrito(idProducto) {
+function agregarAlCarrito(idProducto,datos) {
 
   let itemCarrito = carrito.find((elemento) => elemento.id == idProducto);
 
@@ -56,7 +60,8 @@ function agregarAlCarrito(idProducto) {
     carrito[index].ActualizarPrecioTotal();
     
   } else {
-    carrito.push(new Producto(productosTotales[idProducto], 1));
+    let agregar=new Producto(datos[idProducto-1],1);
+    carrito=[...carrito,agregar];
   }
   localStorage.setItem("carritoEnStorage", JSON.stringify(carrito));
   mostrarCarrito(carrito);
