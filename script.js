@@ -3,10 +3,12 @@ cuponesSweetAlert();
 cargarCarrito();
 validarCupones();
 let carrito = cargarCarrito();
+console.log(carrito);
 let misCupones = "";
 
 
-const url='https://fakestoreapi.com/products'
+
+const url='https://fakestoreapi.com/products';
 fetch(url)
             .then(res=>res.json())
             .then(json=>mostrarAddProductos(json));
@@ -15,14 +17,13 @@ function cargarCarrito() {
   let contenidoEnStorage = JSON.parse(localStorage.getItem("carritoEnStorage"));
   if (contenidoEnStorage) {
     let array = [];
-    for (let i = 0; i < contenidoEnStorage.length; i++) {
-      let producto = new Producto(
-        contenidoEnStorage[i],
-        contenidoEnStorage[i].cantidad
-      );
-      producto.ActualizarPrecioTotal();
+    contenidoEnStorage.forEach((elemento) => {
+      // console.log(elemento);
+      let producto = new Producto(elemento, elemento.cantidad);
       array = [...array, producto];
-    }
+      console.log(producto);
+
+    });
     return array;
   }
 
@@ -55,7 +56,8 @@ function agregarAlCarrito(idProducto,datos) {
   let itemCarrito = carrito.find((elemento) => elemento.id == idProducto);
 
   if (itemCarrito) {
-    let index = carrito.findIndex((elemento) => elemento.id === itemCarrito.id);
+    let mapped=carrito.map((elemento) => elemento.id);
+    let index = mapped.findIndex((elemento) => elemento === itemCarrito.id);
     carrito[index].add();
     carrito[index].ActualizarPrecioTotal();
     

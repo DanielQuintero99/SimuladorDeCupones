@@ -18,9 +18,9 @@ class Producto {
         this.nombre =producto.title;
         this.precio=producto.price;
         this.precioTotal = producto.price;
-        this.img=producto.img;
+        this.img=producto.image;
         this.cantidad=cantidad;
-        
+              
    }
    add(){
        this.cantidad++
