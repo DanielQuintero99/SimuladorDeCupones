@@ -38,12 +38,11 @@ let data = await fetch("https://fakestoreapi.com/products");
     loaderOff(); 
     await mostrarAddProductos(productos);   
   }
-  catch(error){
-    console.log(error); 
+  catch(error){    
     loaderOff(); 
     let nodoError = document.getElementById("gridProductos"); 
     nodoError.innerHTML = `<div class="d-flex flex-column align-items-center m-5"> 
-    <strong class="fs-1">Error al cargar los productos, de la base de datos mostrando productos de la base de datos local</strong> 
+    <strong class="fs-1">Error al cargar los productos</strong> 
     `;
     let botonMostrarProductosLocales = document.createElement("button");
     botonMostrarProductosLocales.setAttribute("class", "btn btn-primary");
