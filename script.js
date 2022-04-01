@@ -1,31 +1,19 @@
-
+obtenerProductos();
 cuponesSweetAlert();
 cargarCarrito();
 validarCupones();
 let carrito = cargarCarrito();
 console.log(carrito);
 let misCupones = "";
-getData();
-async function getData() {
- loaderStart();
- await fetch("https://fakestoreapi.com/products?limit=10")
-              .then((response) => response.json())
-              .then(json =>mostrarAddProductos(json));                                
-}
 
-
-function loaderStart(){
-  let loader = document.getElementById("gridProductos");
-  
-     loader.innerHTML = `
-     <div class="d-flex justify-content-center">
-     <div class="spinner-border" role="status">
-       <span class="sr-only">Loading...</span>
-     </div>
-   </div>
-     `;
    
-  
+function loader(){
+  let loader = document.getElementById("gridProductos");
+  loader.innerHTML = `<div class="d-flex flex-column align-items-center m-5">
+  <strong class="fs-1">Cargando Productos...</strong>
+  <div class="spinner-border ms-auto" style="width: 20rem; height: 20rem; role="status" aria-hidden="true"></div>
+</div>`;
+;
 }
 function cargarCarrito() {
   let contenidoEnStorage = JSON.parse(localStorage.getItem("carritoEnStorage"));
@@ -42,8 +30,46 @@ function cargarCarrito() {
   }
 }
 
+async function obtenerProductos() {
+  try{
+    await loader(); 
+let data = await fetch("https://fakestoreapi.com/products");
+  let productos = await data.json();  //espera a que la data este lista   
+    loaderOff(); 
+    await mostrarAddProductos(productos);   
+  }
+  catch(error){
+    console.log(error); 
+    loaderOff(); 
+    let nodoError = document.getElementById("gridProductos"); 
+    nodoError.innerHTML = `<div class="d-flex flex-column align-items-center m-5"> 
+    <strong class="fs-1">Error al cargar los productos, de la base de datos mostrando productos de la base de datos local</strong> 
+    `;
+    let botonMostrarProductosLocales = document.createElement("button");
+    botonMostrarProductosLocales.setAttribute("class", "btn btn-primary");
+    botonMostrarProductosLocales.innerHTML = "Mostrar Productos Locales";
+    nodoError.appendChild(botonMostrarProductosLocales);
+    botonMostrarProductosLocales.addEventListener("click", async () => {
+      data=await fetch("./data/data.json"); 
+    productos=await data.json();    
+    botonMostrarProductosLocales.remove(); 
+    nodoError.innerHTML = "";   
+    await mostrarAddProductos(productos); 
+    
 
-function mostrarAddProductos(data) {
+    })
+    
+    
+  }
+  
+}
+
+function loaderOff(){
+  let loader = document.getElementById("gridProductos");
+  loader.innerHTML = "";
+}
+
+function mostrarAddProductos(data) {  
   const nodoProductos = document.getElementById("gridProductos");
   data.forEach((opcion) => {
     const card = document.createElement("div")
