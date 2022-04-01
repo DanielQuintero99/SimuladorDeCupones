@@ -20,10 +20,18 @@ function cargarCarrito() {
   console.log(contenidoEnStorage);
   if (contenidoEnStorage) {
     let array =[];
-    contenidoEnStorage.forEach((element) => {
-      let producto = new Producto(element.nombre,element.cantidad,element.precioTotal,element.id);
-      array=[...array,producto];
+    contenidoEnStorage.forEach((elemento) => {
+      let producto = new Producto(elemento,elemento.cantidad);
+      producto.id = elemento.id;
+      producto.nombre = elemento.nombre;
+      producto.precio = elemento.precio;
+      producto.precioTotal = elemento.precioTotal;
+      array = [...array, producto];
     });
+    // contenidoEnStorage.forEach((element) => {
+    //   let producto = new Producto(element.nombre,element.cantidad,element.precioTotal,element.id);
+    //   array=[...array,producto];
+    // });
     return array;
   } else {
     return [];
@@ -34,7 +42,7 @@ async function obtenerProductos() {
   try{
     await loader(); 
 let data = await fetch("https://fakestoreapi.com/products");
-  let productos = await data.json();  //espera a que la data este lista   
+  let productos = await data.json(); 
     loaderOff(); 
     await mostrarAddProductos(productos);   
   }
@@ -53,14 +61,9 @@ let data = await fetch("https://fakestoreapi.com/products");
     productos=await data.json();    
     botonMostrarProductosLocales.remove(); 
     nodoError.innerHTML = "";   
-    await mostrarAddProductos(productos); 
-    
-
-    })
-    
-    
+    await mostrarAddProductos(productos);    
+    })    
   }
-  
 }
 
 function loaderOff(){
