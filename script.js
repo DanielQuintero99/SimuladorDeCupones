@@ -5,30 +5,43 @@ validarCupones();
 let carrito = cargarCarrito();
 console.log(carrito);
 let misCupones = "";
+getData();
+async function getData() {
+ loaderStart();
+ await fetch("https://fakestoreapi.com/products?limit=10")
+              .then((response) => response.json())
+              .then(json =>mostrarAddProductos(json));                                
+}
 
 
-
-const url='https://fakestoreapi.com/products';
-fetch(url)
-            .then(res=>res.json())
-            .then(json=>mostrarAddProductos(json));
-            
+function loaderStart(){
+  let loader = document.getElementById("gridProductos");
+  
+     loader.innerHTML = `
+     <div class="d-flex justify-content-center">
+     <div class="spinner-border" role="status">
+       <span class="sr-only">Loading...</span>
+     </div>
+   </div>
+     `;
+   
+  
+}
 function cargarCarrito() {
   let contenidoEnStorage = JSON.parse(localStorage.getItem("carritoEnStorage"));
+  console.log(contenidoEnStorage);
   if (contenidoEnStorage) {
-    let array = [];
-    contenidoEnStorage.forEach((elemento) => {
-      // console.log(elemento);
-      let producto = new Producto(elemento, elemento.cantidad);
-      array = [...array, producto];
-      console.log(producto);
-
+    let array =[];
+    contenidoEnStorage.forEach((element) => {
+      let producto = new Producto(element.nombre,element.cantidad,element.precioTotal,element.id);
+      array=[...array,producto];
     });
     return array;
+  } else {
+    return [];
   }
-
-  return [];
 }
+
 
 function mostrarAddProductos(data) {
   const nodoProductos = document.getElementById("gridProductos");
@@ -54,9 +67,10 @@ function mostrarAddProductos(data) {
 function agregarAlCarrito(idProducto,datos) {
 
   let itemCarrito = carrito.find((elemento) => elemento.id == idProducto);
-
+  
   if (itemCarrito) {
     let mapped=carrito.map((elemento) => elemento.id);
+    console.log(mapped);
     let index = mapped.findIndex((elemento) => elemento === itemCarrito.id);
     carrito[index].add();
     carrito[index].ActualizarPrecioTotal();

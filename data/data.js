@@ -34,31 +34,6 @@ class Producto {
 
 }
 
-let productosTotales=[
-    {
-        id:0,
-        nombre:"Cargador",
-        precio:20000,
-        img:"images/cargador.jpg"
-    },
-    {
-        id:1,
-        nombre:"Protector",
-        precio:15000,
-        img:"images/protector.jpg"
-    },
-    {
-        id:2,
-        nombre:"Funda",
-        precio:10000,
-        img:"images/funda.jpg"
-    },
-    {
-        id:3,
-        nombre:"Auriculares",
-        precio:150000,
-        img:"images/auriculares.jpg"
-    }
-]
+
 
 
